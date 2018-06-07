@@ -47,14 +47,14 @@ public class MainActivity extends AppCompatActivity {
 
     private void mylist() {
         list = findViewById(R.id.list);
-        helper = new MyDBHelper(this,"my.db",null,1);
+        helper=MyDBHelper.getInstance(this);
         Cursor c = helper.getReadableDatabase()
                 .query("exp",null,null,null,null,null,null);
         SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_expandable_list_item_2,
+                R.layout.list_row,
                 c,
-                new String[] {"info","amount"},
-                new int[] {android.R.id.text1,android.R.id.text2},
+                new String[] {"_id","cdate","info","amount"},
+                new int[] {R.id.tv_id,R.id.tv_cdate,R.id.tv_info,R.id.tv_amount},
                 1);
         list.setAdapter(simpleCursorAdapter);
     }
